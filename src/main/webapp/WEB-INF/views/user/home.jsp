@@ -82,7 +82,7 @@
 						<!-- slider -->
 						<!-- slider -->
 						<!-- slider -->
-    <section>
+<%--     <section>
         <div class="container">
             <div class="top-slider">
                 <div id="jssor_1" class="jssor-1200">
@@ -182,6 +182,45 @@
                                     <br /><small>Rẻ hết cỡ chỉ từ 3.890.000đ</small>
                             </div>
                         </div>
+                    </div>
+                    <div data-u="thumbnavigator" class="jssor-1200-thumbs">
+                        <div data-u="slides" style="cursor: pointer">
+                            <div data-u="prototype" class="p">
+                                <div class=w><div data-u="thumbnailtemplate"></div></div>
+                                <div class=c></div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div data-u="arrowleft" class="slider-arr slider-arr-l" data-autocenter="2">
+                        <i class="icon-left"></i>
+                    </div>
+                    <div data-u="arrowright" class="slider-arr slider-arr-r" data-autocenter="2">
+                        <i class="icon-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> --%>
+    
+        <section>
+        <div class="container">
+            <div class="top-slider">
+                <div id="jssor_1" class="jssor-1200">
+                    <!-- Loading Screen -->
+                    <div data-u="loading" class="jssor-spin">
+                        <img src="${classpath}/user/Content/web/img/spin.svg" />
+                    </div>
+                    <div data-u="slides" class="jssor-1200-container">
+                        <c:forEach items="${listSlides }" var="slide">
+	                        <div>
+	                            <a target="_blank" title="${slide.name}"><img src="${classpath}/StorageFolder/${slide.path }" /></a>
+	                            <div u="thumb">
+	                                Samsung Galaxy S20 FE
+	                                    <br /><small>Ưu đãi lên tới 60%</small>
+	                            </div>
+	                        </div>
+                        </c:forEach>
                     </div>
                     <div data-u="thumbnavigator" class="jssor-1200-thumbs">
                         <div data-u="slides" style="cursor: pointer">

@@ -122,7 +122,7 @@
 			                                                    </div>
 			                                                </td>
 															<td>
-			                                           	    	<a href="${classpath }/manager/change-status/${slide.id }">
+			                                           	    	<a href="${classpath }/manager/change-status-slide/${slide.id }">
 			                                            	    	<span id="_product_status_${slide.id }">
 			                                            	    		<c:choose>
 			                                            	    			<c:when test="${slide.status }">

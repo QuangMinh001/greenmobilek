@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,4 +68,24 @@ public class SlideController {
 		
 		return "redirect:/manager/list-slide";
 	}
+	
+	
+	@RequestMapping(value="/manager/delete-slide/{slideId}", method=RequestMethod.GET)
+	public String deleteSlide(final Model model,
+								@PathVariable("slideId") Integer slideId) throws IOException{
+		SlideImage slideEntity = slideService.getById(slideId);
+		slideService.deleteSlide(slideEntity);
+		
+		return "redirect:/manager/list-slide";
+	}
+	
+	@RequestMapping(value="/manager/change-status-slide/{slideId}", method=RequestMethod.GET)
+	public String changeStatus(final Model model,
+								@PathVariable("slideId") Integer slideId) throws IOException{
+		SlideImage slideEntity = slideService.getById(slideId);
+		slideEntity.setStatus(!slideEntity.getStatus());
+		slideService.saveOrUpdate(slideEntity);
+		return "redirect:/manager/list-slide";
+	}
+	
 }

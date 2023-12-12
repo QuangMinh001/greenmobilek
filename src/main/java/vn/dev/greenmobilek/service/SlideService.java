@@ -24,7 +24,7 @@ public class SlideService extends BaseService<SlideImage> implements Constants{
 	}
 	
 	
-	public boolean isEmptyUploadAvatar(MultipartFile avatarFile) {
+	public boolean isEmptyUploadSlide(MultipartFile avatarFile) {
 		if(avatarFile == null || avatarFile.getOriginalFilename().isEmpty()) {
 			return true;
 		}
@@ -36,7 +36,7 @@ public class SlideService extends BaseService<SlideImage> implements Constants{
 		String path;
 		
 		
-		if(!isEmptyUploadAvatar(slideFile)) {
+		if(!isEmptyUploadSlide(slideFile)) {
 			//save 
 			path = STORAGE_FOLDER + "/Slide/" + slideFile.getOriginalFilename();
 			try {
@@ -50,5 +50,21 @@ public class SlideService extends BaseService<SlideImage> implements Constants{
 			slideImage.setName(slideFile.getOriginalFilename());
 		}
 		return super.saveOrUpdate(slideImage);
+	}
+	
+	
+	@Transactional
+	public void deleteSlide(SlideImage image) {
+		
+		File file = new File(STORAGE_FOLDER + image.getPath());
+		file.delete();
+		super.delete(image);
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<SlideImage> listSlides() {
+		String sql = "SELECT * FROM greenmobile.tbl_slide_image WHERE status=1";
+		return (List<SlideImage>) entityManager.createNativeQuery(sql, clazz()).getResultList();
 	}
 }

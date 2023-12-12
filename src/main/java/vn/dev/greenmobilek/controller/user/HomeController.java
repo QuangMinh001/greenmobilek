@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import vn.dev.greenmobilek.controller.BaseController;
 import vn.dev.greenmobilek.model.Product;
 import vn.dev.greenmobilek.model.ProductImage;
+import vn.dev.greenmobilek.model.SlideImage;
 import vn.dev.greenmobilek.service.ProductImageService;
 import vn.dev.greenmobilek.service.ProductService;
+import vn.dev.greenmobilek.service.SlideService;
 
 
 @Controller
@@ -30,11 +32,16 @@ public class HomeController extends BaseController{
 	@Autowired
 	private ProductImageService productImageService;
 	
+	@Autowired
+	private SlideService slideService;
 	
 	@RequestMapping(value="/home", method = RequestMethod.GET)
 	public String home(final Model model,
 						final HttpServletRequest request,
 						final HttpServletResponse response) throws IOException{
+		List<SlideImage> listSlides = slideService.listSlides();
+		model.addAttribute("listSlides", listSlides);
+		
 		List<Product> isHotPhones = productService.isHotPhones();
 		model.addAttribute("isHotPhones", isHotPhones);
 		
